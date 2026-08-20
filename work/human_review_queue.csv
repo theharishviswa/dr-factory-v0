@@ -1,0 +1,7 @@
+issue_id,category,source_artifact,field_or_entity,decision_needed,owner,status,notes
+HRQ-001,vendor_canonicalization,dataset-raw-hospital-demo,vendor_name,Approve canonical vendor names and aliases,SME,pending_source,Populate after data profile.
+HRQ-002,item_matching,dataset-raw-hospital-demo,item_description,Resolve ambiguous duplicate or similar supply items,SME,pending_source,Populate after data profile.
+HRQ-003,unit_of_measure,dataset-raw-hospital-demo,uom,Approve unit conversions and non-convertible values,SME,pending_source,Populate after data profile.
+HRQ-004,date_resolution,dataset-raw-hospital-demo,date_fields,Approve handling of impossible or illogical dates,SME,pending_source,Populate after data profile.
+HRQ-005,missing_required_data,dataset-raw-hospital-demo,required_fields,Approve imputation vs flagging rules,Data Governance,pending_source,Populate after data profile.
+

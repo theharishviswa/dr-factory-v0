@@ -1,0 +1,3 @@
+entry_id,timestamp,purpose,input_artifacts,tool_or_model_category,output_artifact,human_verification_status,notes
+AI-001,2026-08-20T18:15:00-04:00,Initial factory scaffold from email brief,src-email-project-details-2026-08-20,Codex,repository scaffold,pending_review,No raw dataset values generated.
+

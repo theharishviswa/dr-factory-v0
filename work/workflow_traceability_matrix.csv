@@ -1,0 +1,19 @@
+requirement_id,source_artifact,required_output,owning_agent,status,notes
+R-001,src-email-project-details-2026-08-20,Quoter_Tech1a_cleanfile.csv,data_transformer,pending_source,Requires raw dataset.
+R-002,src-email-project-details-2026-08-20,Quoter_Tech1a_cleanfile.csv,data_transformer,pending_source,Requires corruption examples from data profile.
+R-003,src-email-project-details-2026-08-20,business_rules.md,rules_analyst,pending_source,Requires value inconsistency inventory.
+R-004,src-email-project-details-2026-08-20,human_review_queue.csv,rules_analyst,pending_source,Requires date fields and examples.
+R-005,src-email-project-details-2026-08-20,Quoter_Tech1a_itemmaster.csv,item_master_builder,pending_source,Requires vendor and item variants.
+R-006,src-email-project-details-2026-08-20,data_quality_report.md,data_profiler,pending_source,Requires missingness profile.
+R-007,src-email-project-details-2026-08-20,Quoter_Tech1a_itemmaster.csv,item_master_builder,pending_source,Requires cleanfile.
+R-008,src-email-project-details-2026-08-20,Quoter_Tech1a_summary.pdf,summary_writer,draft,Can draft structure before data arrives.
+R-009,src-email-project-details-2026-08-20,ai_usage_log.csv,summary_writer,draft,Log all AI-assisted steps as factory runs.
+R-010,src-email-project-details-2026-08-20,human_review_queue.csv,rules_analyst,draft,Initial queue can start from known ambiguity classes.
+R-011,src-email-project-details-2026-08-20,scaling_strategy.md,summary_writer,draft,Use governed repeatable methodology.
+R-012,src-email-project-details-2026-08-20,sv-2 diagram,diagram_architect,pending_source,Requires workflow and cleaned schema.
+R-013,src-email-project-details-2026-08-20,div-1 diagram,diagram_architect,pending_source,Requires conceptual entities.
+R-014,src-email-project-details-2026-08-20,div-2 diagram,diagram_architect,pending_source,Requires logical cleaned schema.
+R-015,src-email-project-details-2026-08-20,diagrams package,diagram_architect,pending_source,Requires workflow diagram.
+R-016,src-email-project-details-2026-08-20,demo_runbook.md,demo_coach,draft,Can draft shell before outputs are final.
+R-017,src-email-project-details-2026-08-20,qa_prep.md,demo_coach,draft,Government questions unknown.
+

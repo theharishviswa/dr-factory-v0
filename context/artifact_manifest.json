@@ -1,0 +1,94 @@
+{
+  "schema_version": "0.1.0",
+  "generated_at": "2026-08-20T18:15:00-04:00",
+  "artifact_schema": {
+    "required_fields": [
+      "artifact_id",
+      "artifact_type",
+      "path",
+      "source",
+      "created_at",
+      "created_by_agent",
+      "version",
+      "dependencies",
+      "summary",
+      "acceptance_status"
+    ],
+    "artifact_types": [
+      "source_email",
+      "source_attachment",
+      "requirements",
+      "dataset_raw",
+      "dataset_profile",
+      "business_rules",
+      "human_review_queue",
+      "deliverable",
+      "review_report",
+      "factory_memory"
+    ],
+    "acceptance_status_values": [
+      "pending_source",
+      "draft",
+      "ready_for_review",
+      "accepted",
+      "rejected"
+    ]
+  },
+  "artifacts": [
+    {
+      "artifact_id": "src-email-project-details-2026-08-20",
+      "artifact_type": "source_email",
+      "path": "context/source_email_project_details.md",
+      "source": "Gmail message Fwd: Project Details For Demo",
+      "created_at": "2026-08-20T18:15:00-04:00",
+      "created_by_agent": "factory_orchestrator",
+      "version": "0.1.0",
+      "dependencies": [],
+      "summary": "Email-derived project brief for the RFP technical challenge demo.",
+      "acceptance_status": "draft"
+    },
+    {
+      "artifact_id": "src-attachment-rfp-pdf",
+      "artifact_type": "source_attachment",
+      "path": "raw/36C10B26R0048 08.18.2026.pdf",
+      "source": "Attachment referenced by source email",
+      "created_at": null,
+      "created_by_agent": null,
+      "version": null,
+      "dependencies": [
+        "src-email-project-details-2026-08-20"
+      ],
+      "summary": "RFP PDF attachment. Awaiting local source file.",
+      "acceptance_status": "pending_source"
+    },
+    {
+      "artifact_id": "dataset-raw-hospital-demo",
+      "artifact_type": "dataset_raw",
+      "path": "raw/hospital_dataset_placeholder.csv",
+      "source": "Expected raw hospital dataset attachment",
+      "created_at": null,
+      "created_by_agent": null,
+      "version": null,
+      "dependencies": [
+        "src-email-project-details-2026-08-20"
+      ],
+      "summary": "Raw 10-hospital dataset. Placeholder until the actual dataset is added.",
+      "acceptance_status": "pending_source"
+    },
+    {
+      "artifact_id": "workflow-diagram-source",
+      "artifact_type": "source_attachment",
+      "path": "raw/workflow_diagram_placeholder.md",
+      "source": "Expected EHR to EIMS to FMS workflow diagram",
+      "created_at": null,
+      "created_by_agent": null,
+      "version": null,
+      "dependencies": [
+        "src-email-project-details-2026-08-20"
+      ],
+      "summary": "Business workflow diagram source. Placeholder until actual diagram is added.",
+      "acceptance_status": "pending_source"
+    }
+  ]
+}
+

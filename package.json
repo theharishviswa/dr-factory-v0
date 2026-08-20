@@ -1,0 +1,12 @@
+{
+  "name": "dr-factory-v0",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Practice software factory for the hospital data-cleaning RFP demo.",
+  "scripts": {
+    "factory:list-artifacts": "node agent/tools/list_artifacts.mjs",
+    "factory:validate-manifest": "node agent/tools/validate_deliverable_manifest.mjs"
+  }
+}
+
