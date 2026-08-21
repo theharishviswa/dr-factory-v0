@@ -1,15 +1,14 @@
 # Deliverables
 
-Final demo outputs go here after review.
-
-Expected:
+Final demo outputs ready for live rehearsal:
 
 - `Quoter_Tech1a_cleanfile.csv`
-- `Quoter_Tech1a_itemmaster.csv` or `.xlsx`
-- `Quoter_Tech1a_summary.pdf` or `.docx`
-- `Quoter_Tech1a_diagrams.pdf` or `.pptx`
+- `Quoter_Tech1a_itemmaster.csv`
+- `Quoter_Tech1a_summary.docx`
+- `Quoter_Tech1a_summary.pdf`
+- `Quoter_Tech1a_diagrams.pptx`
+- `Quoter_Tech1a_diagrams.pdf`
 - `demo_runbook.md`
 - `factory_traceability_matrix.csv`
 
-Do not place draft working files here unless they are ready for review.
-
+The Loom recording is rehearsal/showcase evidence. The RFP presentation remains a live, non-pre-recorded event.

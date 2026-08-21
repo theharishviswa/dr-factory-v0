@@ -1,6 +1,6 @@
 # DIV-1 Conceptual Data Model Draft
 
-Status: draft pending readable data dictionary.
+Status: supporting design note; superseded by the final DIV-1 in `deliverables/Quoter_Tech1a_diagrams.*`.
 
 Sources:
 
@@ -42,13 +42,12 @@ erDiagram
   TRANSFORMATION_RULE ||--o{ GOVERNANCE_DECISION : may_require
 ```
 
-## Dataset Binding Needed
+## Dataset Binding Used In Final Diagram
 
-The readable workbook/data dictionary should confirm:
+The readable workbook/data dictionary was used to confirm:
 
 - actual field names
 - entity keys
 - relationship cardinality
 - whether patient-level fields exist or are abstracted
 - whether invoice/order/payment fields are present in the dataset or only in the workflow diagram
-

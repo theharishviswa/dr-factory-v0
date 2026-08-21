@@ -1,6 +1,6 @@
 # SV-2 Systems Resource Flow Description Draft
 
-Status: draft pending readable dataset/schema.
+Status: supporting design note; superseded by the final SV-2 in `deliverables/Quoter_Tech1a_diagrams.*`.
 
 Sources:
 
@@ -34,9 +34,9 @@ flowchart LR
   FMS -->|Insurance invoice/payment| FMS
 ```
 
-## Dataset Binding Needed
+## Dataset Binding Used In Final Diagram
 
-When the workbook is readable, bind each resource flow to fields in the dirty dataset and cleaned output:
+The final diagram binds resource flows to these fields in the readable dataset and cleaned output:
 
 - hospital identifier
 - supply/item identifier
@@ -53,4 +53,3 @@ When the workbook is readable, bind each resource flow to fields in the dirty da
 
 - The final SV-2 should not overclaim VA-specific architecture because the RFP says the workflow and dataset are fictional and system agnostic.
 - The final diagram should show the data/resource movement needed to explain the cleaned dataset and item master.
-

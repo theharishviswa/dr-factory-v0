@@ -13,7 +13,7 @@
       "deliverables": [
         "Quoter_Tech1a_cleanfile.csv"
       ],
-      "status": "blocked_until_dataset_readable"
+      "status": "completed"
     },
     {
       "id": "R-002",
@@ -24,7 +24,7 @@
         "transformation_log.csv",
         "data_quality_report.md"
       ],
-      "status": "blocked_until_dataset_readable"
+      "status": "completed"
     },
     {
       "id": "R-003",
@@ -33,7 +33,7 @@
       "deliverables": [
         "Quoter_Tech1a_itemmaster.csv"
       ],
-      "status": "blocked_until_cleanfile_available"
+      "status": "completed"
     },
     {
       "id": "R-004",
@@ -42,7 +42,7 @@
       "deliverables": [
         "Quoter_Tech1a_summary.pdf"
       ],
-      "status": "draftable"
+      "status": "completed"
     },
     {
       "id": "R-005",
@@ -52,7 +52,7 @@
         "Quoter_Tech1a_summary.pdf",
         "human_review_queue.csv"
       ],
-      "status": "draftable"
+      "status": "completed"
     },
     {
       "id": "R-006",
@@ -62,7 +62,7 @@
         "Quoter_Tech1a_summary.pdf",
         "demo_runbook.md"
       ],
-      "status": "draftable"
+      "status": "completed"
     },
     {
       "id": "R-007",
@@ -71,7 +71,7 @@
       "deliverables": [
         "Quoter_Tech1a_diagrams.pdf"
       ],
-      "status": "partially_draftable"
+      "status": "completed"
     },
     {
       "id": "R-008",
@@ -80,7 +80,7 @@
       "deliverables": [
         "Quoter_Tech1a_diagrams.pdf"
       ],
-      "status": "partially_draftable"
+      "status": "completed"
     },
     {
       "id": "R-009",
@@ -89,7 +89,7 @@
       "deliverables": [
         "Quoter_Tech1a_diagrams.pdf"
       ],
-      "status": "blocked_until_dataset_schema_readable"
+      "status": "completed"
     },
     {
       "id": "R-010",
@@ -99,7 +99,7 @@
         "demo_runbook.md",
         "demo_talk_track.md"
       ],
-      "status": "draftable"
+      "status": "ready_for_live_rehearsal"
     },
     {
       "id": "R-011",
@@ -108,7 +108,7 @@
       "deliverables": [
         "qa_prep.md"
       ],
-      "status": "draftable"
+      "status": "completed"
     }
   ],
   "constraints": {
@@ -124,12 +124,5 @@
       "FMS"
     ]
   },
-  "blockers": [
-    {
-      "id": "B-001",
-      "blocker": "Hospital dataset workbook is present but rights-managed/encrypted and cannot be read locally.",
-      "needed_resolution": "Provide unprotected xlsx/csv export or authorized Office export."
-    }
-  ]
+  "blockers": []
 }
-

@@ -1,6 +1,6 @@
 {
   "schema_version": "0.1.0",
-  "generated_at": "2026-08-21T11:24:30",
+  "generated_at": "2026-08-21T16:30:00-04:00",
   "artifact_schema": {
     "required_fields": [
       "artifact_id",
@@ -224,8 +224,8 @@
         "draft-div-1",
         "draft-div-2"
       ],
-      "summary": "Draft 30-minute demo runbook with timed segments and dataset-dependent placeholders.",
-      "acceptance_status": "draft"
+      "summary": "Final 30-minute live demo runbook with evidence sequence, Loom rehearsal plan, and presenter guardrails.",
+      "acceptance_status": "ready_for_review"
     },
     {
       "artifact_id": "draft-qa-prep",
@@ -239,8 +239,8 @@
         "requirements-current",
         "draft-summary-outline"
       ],
-      "summary": "Draft Q&A prep for common government evaluator themes.",
-      "acceptance_status": "draft"
+      "summary": "Final Q&A prep for likely government evaluator themes and measured factory results.",
+      "acceptance_status": "ready_for_review"
     },
     {
       "artifact_id": "dataset-raw-excel-data",
@@ -377,8 +377,85 @@
       "dependencies": [
         "dataset-raw-excel-data"
       ],
-      "summary": "Machine-readable acceptance verdict for the local factory workflow test.",
-      "acceptance_status": "draft"
+      "summary": "Machine-readable acceptance verdict for the final artifact package and live-demo readiness.",
+      "acceptance_status": "ready_for_review"
+    },
+    {
+      "artifact_id": "summary-docx-final",
+      "artifact_type": "deliverable",
+      "path": "deliverables/Quoter_Tech1a_summary.docx",
+      "source": "Factory outputs and RFP Technical Challenge requirements",
+      "created_at": "2026-08-21T16:30:00-04:00",
+      "created_by_agent": "summary_writer",
+      "version": "1.0.0",
+      "dependencies": [
+        "dataset-profile-current",
+        "business-rules-current",
+        "cleanfile-current",
+        "itemmaster-current"
+      ],
+      "summary": "Editable four-page technical challenge summary with methodology, decisions, AI governance, and scaling approach.",
+      "acceptance_status": "ready_for_review"
+    },
+    {
+      "artifact_id": "summary-pdf-final",
+      "artifact_type": "deliverable",
+      "path": "deliverables/Quoter_Tech1a_summary.pdf",
+      "source": "Rendered from deliverables/Quoter_Tech1a_summary.docx",
+      "created_at": "2026-08-21T16:30:00-04:00",
+      "created_by_agent": "summary_writer",
+      "version": "1.0.0",
+      "dependencies": [
+        "summary-docx-final"
+      ],
+      "summary": "Submission-ready four-page PDF summary using a minimum 10-point font.",
+      "acceptance_status": "ready_for_review"
+    },
+    {
+      "artifact_id": "diagrams-pptx-final",
+      "artifact_type": "deliverable",
+      "path": "deliverables/Quoter_Tech1a_diagrams.pptx",
+      "source": "Workflow diagram, cleanfile schema, item master, and RFP architecture requirements",
+      "created_at": "2026-08-21T16:30:00-04:00",
+      "created_by_agent": "diagram_architect",
+      "version": "1.0.0",
+      "dependencies": [
+        "workflow-diagram-source",
+        "cleanfile-current",
+        "itemmaster-current"
+      ],
+      "summary": "Editable architecture deck containing SV-2, DIV-1, and DIV-2 views.",
+      "acceptance_status": "ready_for_review"
+    },
+    {
+      "artifact_id": "diagrams-pdf-final",
+      "artifact_type": "deliverable",
+      "path": "deliverables/Quoter_Tech1a_diagrams.pdf",
+      "source": "Rendered from deliverables/Quoter_Tech1a_diagrams.pptx",
+      "created_at": "2026-08-21T16:30:00-04:00",
+      "created_by_agent": "diagram_architect",
+      "version": "1.0.0",
+      "dependencies": [
+        "diagrams-pptx-final"
+      ],
+      "summary": "PDF architecture package containing SV-2, DIV-1, and DIV-2 views.",
+      "acceptance_status": "ready_for_review"
+    },
+    {
+      "artifact_id": "traceability-final",
+      "artifact_type": "deliverable",
+      "path": "deliverables/factory_traceability_matrix.csv",
+      "source": "RFP requirements and final artifact package",
+      "created_at": "2026-08-21T16:30:00-04:00",
+      "created_by_agent": "qa_reviewer",
+      "version": "1.0.0",
+      "dependencies": [
+        "requirements-current",
+        "summary-pdf-final",
+        "diagrams-pdf-final"
+      ],
+      "summary": "Requirement-to-source-to-output traceability matrix for the technical challenge.",
+      "acceptance_status": "ready_for_review"
     }
   ]
 }

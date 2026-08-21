@@ -1,0 +1,18 @@
+{
+  "request_id": "rfp-production-rehearsal-001",
+  "trigger_source": "cli",
+  "requested_by": "harish",
+  "project_name": "dr-factory-demo",
+  "user_request": "Run the complete hospital item-master RFP workflow and produce a governed evidence bundle.",
+  "source_artifacts": [
+    "raw/Excel-data.xlsx",
+    "raw/36C10B26R0048 08.18.2026.pdf",
+    "raw/Flow_Diagram_Technical_Challenge.pdf"
+  ],
+  "response_channel": {
+    "type": "cli",
+    "target": "stdout"
+  },
+  "mode": "dry-run",
+  "gate_policy": "auto_approve_rehearsal"
+}

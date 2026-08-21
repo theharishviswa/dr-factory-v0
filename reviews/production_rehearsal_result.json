@@ -1,0 +1,31 @@
+{
+  "schema_version": "1.0",
+  "rehearsal_date": "2026-08-21",
+  "mode": "dry-run",
+  "proof_level": "control_plane_rehearsal",
+  "runs_completed": 2,
+  "deterministic_outputs_identical": true,
+  "governance_evidence_present": true,
+  "acceptance_checks_passed": 6,
+  "agent_stations_exercised_per_run": 5,
+  "ledger_events_per_run": 20,
+  "observed_counts": {
+    "cleanfile_rows": 5000,
+    "cleanfile_columns": 26,
+    "item_master_rows": 10,
+    "human_review_records": 3549
+  },
+  "deterministic_artifact_hashes": {
+    "deliverables/Quoter_Tech1a_cleanfile.csv": "14ecf66a93508727e41777dcdf31441d28a4e53bfa3b858b61b36d38c2870c98",
+    "deliverables/Quoter_Tech1a_itemmaster.csv": "f0b17345d4d86618eb2c980b1d610438d18621fcc8ba8d195dadadf546d2cd66",
+    "work/transformation_log.csv": "5699734cf9f8b43f65371bfa2d44ad30d80c80a89611ba86587fee23c4690686",
+    "work/human_review_queue.csv": "4793ff673a46d9f80ff6d3bd28d1a6eb841ca0a64306fdb57f76f99a3bb177a4"
+  },
+  "submission_ready": false,
+  "remaining_proof": [
+    "Run the five autonomous agent stations in live mode with a provider key.",
+    "Render and visually validate the required four-page summary.",
+    "Generate and visually validate the SV-2, DIV-1, and DIV-2 package.",
+    "Exercise a real signed human-approval callback and Slack or Teams trigger adapter."
+  ]
+}

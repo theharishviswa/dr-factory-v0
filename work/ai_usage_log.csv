@@ -1,3 +1,7 @@
 entry_id,timestamp,purpose,input_artifacts,tool_or_model_category,output_artifact,human_verification_status,notes
 AI-001,2026-08-20T18:15:00-04:00,Initial factory scaffold from email brief,src-email-project-details-2026-08-20,Codex,repository scaffold,pending_review,No raw dataset values generated.
-
+AI-002,2026-08-21T11:24:30-04:00,Deterministic data workflow execution,raw/Excel-data.xlsx,Python deterministic workflow,"cleanfile; item master; transformation log; human review queue",verified,"No LLM used for row-level transformation; 5,000 rows preserved."
+AI-003,2026-08-21T15:36:26-04:00,First governed control-plane rehearsal,"RFP; workflow diagram; Excel-data.xlsx",Factory agents in dry-run mode,work/rehearsals/rehearsal_20260821153626.json,verified,"No provider call; run ledger and artifact hashes captured."
+AI-004,2026-08-21T15:37:13-04:00,Second governed control-plane rehearsal,"RFP; workflow diagram; Excel-data.xlsx",Factory agents in dry-run mode,work/rehearsals/rehearsal_20260821153713.json,verified,"Four deterministic outputs matched the first rehearsal byte-for-byte."
+AI-005,2026-08-21T16:30:00-04:00,Submission summary and architecture package authoring,"factory outputs; RFP requirements; workflow notes",Codex with deterministic document builders,"Quoter_Tech1a_summary.docx/pdf; Quoter_Tech1a_diagrams.pptx/pdf",verified,"Rendered outputs visually inspected; summary page/font and slide overflow checks passed."
+AI-006,2026-08-21T16:30:00-04:00,Provider-backed full workflow rehearsal,examples/kickoff_request.live-demo.json,OpenAI Responses API,work/runs/<pending-run-id>/evidence_bundle.json,pending,"Not executed because OPENAI_API_KEY is not set. No model training or fine-tuning was performed."

@@ -68,24 +68,33 @@ export async function callModel({ instructions, input, metadata = {} }) {
           ]
         }
       ],
-      metadata
+      metadata,
+      store: false,
+      max_output_tokens: Number(process.env.DR_FACTORY_MAX_OUTPUT_TOKENS ?? provider.max_output_tokens ?? 6000)
     })
   });
 
   if (!response.ok) {
     const body = await response.text();
-    throw new Error(`Provider call failed: ${response.status} ${body}`);
+    throw new Error(`Provider call failed: ${response.status} ${body.slice(0, 1000)}`);
   }
 
   const payload = await response.json();
-  return {
+  const result = {
     provider: providerName,
     model,
     mode,
     response_id: payload.id,
     output_text: payload.output_text ?? extractOutputText(payload),
-    raw: payload
+    usage: payload.usage ?? null,
+    service_tier: payload.service_tier ?? null
   };
+
+  if (process.env.DR_FACTORY_CAPTURE_RAW_MODEL_RESPONSE === "true") {
+    result.raw = payload;
+  }
+
+  return result;
 }
 
 function extractOutputText(payload) {
@@ -99,4 +108,3 @@ function extractOutputText(payload) {
   }
   return parts.join("\n");
 }
-

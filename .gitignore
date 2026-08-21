@@ -1,9 +1,13 @@
 .DS_Store
 node_modules/
+node_modules
 .env
 .env.local
 dist/
 build/
 tmp/
 *.log
-
+work/runs/
+work/rehearsals/
+deliverables/Quoter_Tech1a_diagrams/
+deliverables/*.inspect.ndjson

@@ -1,49 +1,39 @@
-# Q&A Prep Draft
+# Technical Challenge Q&A Prep
 
-Status: draft pending final outputs.
+Status: ready for the 15-minute Government Q&A period.
 
-## Likely Government Question Themes
+## How did you decide what to automate versus route to SME review?
 
-### How did you decide what to automate versus route to SME review?
+We automated changes supported by the data dictionary, deterministic normalization rules, and repeatable evidence. We did not guess on ambiguous clinical, supply-chain, or financial meanings. Those cases remain traceable in the 3,549-record human review queue with the triggering rule and source identifier.
 
-Answer frame:
+## What did the factory actually change?
 
-- Deterministic issues were automated when the data dictionary, consistent patterns, and business rules supported the decision.
-- Probabilistic matches used confidence thresholds and were queued for review below threshold.
-- Ambiguous clinical, supply-chain, or financial interpretations were not guessed.
-- The human review queue is a governance artifact, not a weakness.
+It preserved all 5,000 source rows, produced a 26-column cleanfile, logged 24,886 field-level transformations, eliminated duplicate SBRNs, and consolidated the data into a 10-record national item master. The transformation log provides before/after evidence for each changed field.
 
-### How would this scale from 10 hospitals to 200?
+## Why is the review queue so large?
 
-Answer frame:
+The queue counts records requiring at least one governance decision; it is not a discarded-record count. Multiple ambiguity classes are intentionally preserved, including unsupported recall status, future purchase dates, and expiration-before-purchase dates. The production pattern is to resolve exception classes in batches, version the approved rule, and replay the affected records.
 
-- Standardize intake and data dictionary mapping.
-- Automate profiling and anomaly detection.
-- Maintain a versioned rules registry.
-- Use staged onboarding waves.
-- Track quality metrics and exceptions by hospital.
-- Use SME review queues for ambiguous mappings.
-- Run regression tests before changing rules.
+## How would this scale from 10 hospitals to approximately 200?
 
-### How did AI affect the work?
+Use a versioned canonical schema and rules registry, onboard hospitals in waves, profile every feed, and measure exceptions by facility. Deterministic work runs in parallel containers; ambiguous mappings enter role-based review queues. Regression tests and acceptance gates run before rules are promoted, while run-level hashes and lineage support audit and replay.
 
-Answer frame:
+## How did AI affect the work?
 
-- AI was used as an accelerant for analysis, clustering, drafting, and review support.
-- AI did not replace source evidence or SME governance.
-- Prompts/tools were logged.
-- Outputs were verified against source data, data dictionary, and acceptance criteria.
+AI supports context synthesis, rule critique, architecture drafting, summary generation, and independent review. Deterministic code performs the record-level transformation. Each agent receives bounded source artifacts, and the factory records provider/model metadata and outputs. Human gates remain responsible for source acceptance, business-rule approval, SME decisions, and final package acceptance.
 
-### How do the diagrams connect to the cleaned data?
+## How do you prevent hallucinated rules?
 
-Answer frame:
+Source artifacts are explicitly authoritative. Agents cannot silently promote a suggestion into a transformation rule. A new rule requires evidence, versioning, review, and regression checks; uncertain values are preserved and routed rather than fabricated.
 
-- SV-2 maps resource flows between EHR, EIMS, and FMS.
-- DIV-1 defines conceptual entities from the workflow.
-- DIV-2 maps those entities into logical tables and fields from the cleaned dataset and item master.
-- Traceability links each transformation and diagram element to source context.
+## How do the diagrams connect to the cleaned data?
 
-## Known Risk To Disclose Internally
+SV-2 maps the resource exchanges among EHR, EIMS, and FMS. DIV-1 defines the business concepts and relationships. DIV-2 maps those concepts to the actual cleanfile and item-master fields. The traceability matrix connects each required view to its source and final artifact.
 
-The downloaded workbook is rights-managed/encrypted locally. The team needs a readable export before final data profiling and deliverable generation.
+## How do you prove repeatability?
 
+Two complete dry-run rehearsals produced four deterministic outputs with identical SHA-256 hashes. A live run adds model-call metadata, source hashes, gate decisions, acceptance checks, and output hashes to the same evidence structure. LLM prose is governed by review criteria rather than required to be byte-identical.
+
+## What remains before the formal demonstration?
+
+Run one full live rehearsal with the provider key supplied through a local environment variable or secret manager, review the evidence bundle, and rehearse the 30-minute presentation. The Loom recording supports preparation, but the RFP demonstration itself must be live and non-pre-recorded.

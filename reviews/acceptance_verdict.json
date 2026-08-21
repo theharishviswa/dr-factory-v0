@@ -1,7 +1,7 @@
 {
   "created_by_agent": "qa_reviewer",
   "date": "2026-08-21",
-  "verdict": "partial_pass_for_workflow_test",
+  "verdict": "artifact_package_ready_for_live_demo_rehearsal",
   "ready_for_final_submission": false,
   "checks": {
     "source_workbook_readable": true,
@@ -10,10 +10,15 @@
     "row_count_preserved": true,
     "transformation_log_created": true,
     "human_review_queue_created": true,
-    "summary_finalized": false,
-    "diagrams_finalized": false
+    "summary_finalized": true,
+    "summary_page_and_font_constraints_passed": true,
+    "diagrams_finalized": true,
+    "deterministic_rehearsal_repeatable": true,
+    "live_model_execution_captured": false,
+    "formal_live_presentation_completed": false
   },
   "blockers": [
-    "Final summary and final diagrams have not yet been generated from the completed data outputs."
+    "OPENAI_API_KEY is not set; a live factory-owned model run has not been captured.",
+    "The required live, non-pre-recorded presentation has not yet been performed."
   ]
 }

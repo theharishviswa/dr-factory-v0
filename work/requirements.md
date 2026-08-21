@@ -32,12 +32,11 @@ Source artifact: `src-email-project-details-2026-08-20`
 - Do not fabricate source values when raw data is unavailable.
 - Architecture outputs must reflect the cleaned dataset, not generic diagrams.
 
-## Open Questions
+## Resolved Packaging Decisions
 
-- Where is the actual 10-hospital dataset?
-- Where is the actual workflow diagram?
-- Should final summary be `.docx`, `.pdf`, or both?
-- Should final diagrams be delivered as `.pptx`, `.pdf`, or both?
-- Who is the SME for ambiguous vendor, item, unit, and date decisions?
-- What are the Government's two Q&A questions?
-
+- The readable 10-hospital dataset is `raw/Excel-data.xlsx`.
+- The source workflow is `raw/Flow_Diagram_Technical_Challenge.pdf`.
+- The final summary is supplied as both editable DOCX and submission PDF.
+- The final diagrams are supplied as both editable PPTX and PDF.
+- Ambiguous vendor, item, unit, recall, and date decisions remain in the human review queue for designated SMEs/data stewards.
+- Government questions are not known in advance; `work/qa_prep.md` covers the most likely evaluation themes.

@@ -11,7 +11,9 @@ try {
   const { outputPath, result } = await runAgent({
     agentName,
     task,
-    inputArtifactPaths: artifactPaths
+    inputArtifactPaths: artifactPaths,
+    runId: process.env.DR_FACTORY_RUN_ID,
+    requestId: process.env.DR_FACTORY_REQUEST_ID
   });
 
   console.log(
@@ -21,6 +23,8 @@ try {
         provider: result.provider,
         model: result.model,
         mode: result.mode,
+        response_id: result.response_id ?? null,
+        usage: result.usage ?? null,
         output_text: result.output_text
       },
       null,
@@ -31,4 +35,3 @@ try {
   console.error(error.stack ?? error.message);
   process.exit(1);
 }
-

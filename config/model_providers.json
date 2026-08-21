@@ -6,7 +6,8 @@
       "base_url": "https://api.openai.com/v1",
       "responses_path": "/responses",
       "default_model_env": "DR_FACTORY_MODEL",
-      "default_model": "gpt-5"
+      "default_model": "gpt-5",
+      "max_output_tokens": 6000
     }
   },
   "runtime_modes": {
@@ -18,4 +19,3 @@
     }
   }
 }
-

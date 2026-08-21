@@ -21,7 +21,7 @@ Start with:
 
 ## Current Status
 
-Phase 0 and Phase 1 scaffold are in place. Source data, RFP PDF, and workflow diagram are still expected inputs. Do not invent dataset values; use the placeholders and governance queue until the actual files are added.
+The readable 5,000-row workbook, RFP, and source workflow diagram are loaded. The deterministic workflow has been rehearsed twice with matching output hashes, and the final CSV, summary, diagram, traceability, demo, and Q&A artifacts are ready for a provider-backed live rehearsal. The remaining prerequisite is an `OPENAI_API_KEY` supplied locally or through a deployment secret store.
 
 ## Expected Demo Deliverables
 
@@ -34,11 +34,10 @@ Phase 0 and Phase 1 scaffold are in place. Source data, RFP PDF, and workflow di
 
 ## Next Executable Workflow
 
-1. Add the raw RFP PDF, hospital dataset, and workflow diagram to `raw/`.
-2. Update `context/artifact_manifest.json`.
-3. Run `context_curator` against the source email and attachments.
-4. Run `data_profiler` against the raw dataset.
-5. Draft business rules and route ambiguous issues to `work/human_review_queue.csv`.
+1. Supply `OPENAI_API_KEY` through the local environment or secret manager.
+2. Run `npm run factory:demo:live` once.
+3. Review the generated run ledger, model calls, checks, and artifact inventory under `work/runs/<run-id>/`.
+4. Record the Loom rehearsal and conduct the required live, non-pre-recorded RFP demonstration.
 
 ## Autonomous Runtime
 
@@ -50,6 +49,14 @@ Dry run without provider calls:
 npm run factory:agent:dry-run
 ```
 
+Complete two-run production rehearsal without provider calls:
+
+```bash
+npm run factory:rehearse
+```
+
+See `docs/production_rehearsal.md` for the evidence bundle and showcase script. Use `docs/enterprise_validation_plan.md` as the release-gate test matrix for live agents, human approvals, security, failure recovery, load, and Slack/Teams parity.
+
 Live provider call:
 
 ```bash
@@ -57,6 +64,12 @@ cp .env.example .env.local
 export OPENAI_API_KEY="..."
 export DR_FACTORY_MODE=live
 npm run factory:agent:live
+```
+
+Full governed live-demo workflow:
+
+```bash
+npm run factory:demo:live
 ```
 
 Production intent:
