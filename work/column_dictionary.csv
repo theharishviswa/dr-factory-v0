@@ -1,0 +1,24 @@
+Field Name,Description,Data Type,Data Quality Rule
+SBRN,Selection Board Record Number (SBRN).  Unique record number assigned for the purposes of the selection board's ability to identify line items of data.  This number does not change.,Text Alphanumeric,No changes are to be made to this field
+Hospital,Hospital Name,Text,Required; text
+FieldItemMasterNumber,Internal hospital item master reference used to standardize items.,Text,Should match valid item listed per hospital; not null
+Part Name,Common or official name of the inventory item.,Text,Required; text only
+Part Description,Detailed description of the item.,Text,Required; text
+Unit of Measure,Unit in which the item is stocked or purchased.,Text,Must use standard UoM codes
+Classification,Category or grouping for the item.,Text,Required; text
+Manufacturer Name,Name of the company that produces or supplies the item.,Text,Required; text
+Vendor Name,Name of the distributor or contracted supplier.,Text,Required; text
+Vendor Contact Info,Numeric contact information for the vendor.,Integer,Must be numeric; phone or ID
+Vendor Part Number,Supplier or manufacturer’s specific item code used for ordering.,Text,May not be blank; text only
+Catalog Number,Catalog reference number used in ordering systems.,Text,Must follow vendor catalog format
+Price,Cost per unit of the item.,Decimal,Must be numeric; >= 0.00
+Lot Number,Manufacturing lot identifier used for traceability.,Text,Required if item is lot-controlled
+Batch Number,Production batch identifier.,Text,Required if applicable
+Expiration Date,Date after which the item should no longer be used.,Text,Must be valid date; Flag if date is past
+Recall Status,Indicates if the item is under recall.,Text,"Must be one of: None, Active, Cleared"
+Purchase Order Number,ID of the purchase order through which the item was ordered.,Text,Must match valid PO format
+Purchase Date,Date the item was purchased.,Text,Valid date; cannot be future
+Order Status,Status of the procurement transaction.,Text,"One of: Pending, Delivered, Shipped, Canceled"
+QtyOnOrder,Quantity ordered but not yet received.,Integer,Integer; >= 0
+OnHandQty,Quantity physically available in inventory.,Integer,Integer; >= 0
+Location,Storage location or department where the item is kept.,Text,Location within Hospital; alphanumeric

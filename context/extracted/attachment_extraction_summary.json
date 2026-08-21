@@ -1,0 +1,46 @@
+{
+  "rfp_pdf": {
+    "path": "/Users/harish.viswanathan/Downloads/36C10B26R0048 08.18.2026.pdf",
+    "pages": 153,
+    "matched_pages": [
+      2,
+      24,
+      25,
+      26,
+      27,
+      30,
+      36,
+      40,
+      47,
+      49,
+      50,
+      57,
+      60,
+      61,
+      63,
+      70,
+      81,
+      87,
+      88,
+      89,
+      90,
+      91,
+      133,
+      136,
+      138,
+      139,
+      143,
+      144,
+      145,
+      146,
+      147,
+      148,
+      149
+    ]
+  },
+  "flow_diagram_pdf": {
+    "path": "/Users/harish.viswanathan/Downloads/Flow_Diagram_Technical_Challenge.pdf",
+    "pages": 1,
+    "text_extraction_blank": true
+  }
+}

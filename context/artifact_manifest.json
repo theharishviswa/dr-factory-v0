@@ -1,6 +1,6 @@
 {
   "schema_version": "0.1.0",
-  "generated_at": "2026-08-20T18:15:00-04:00",
+  "generated_at": "2026-08-21T11:24:30",
   "artifact_schema": {
     "required_fields": [
       "artifact_id",
@@ -31,7 +31,8 @@
       "draft",
       "ready_for_review",
       "accepted",
-      "rejected"
+      "rejected",
+      "blocked"
     ]
   },
   "artifacts": [
@@ -45,50 +46,339 @@
       "version": "0.1.0",
       "dependencies": [],
       "summary": "Email-derived project brief for the RFP technical challenge demo.",
-      "acceptance_status": "draft"
+      "acceptance_status": "accepted"
     },
     {
       "artifact_id": "src-attachment-rfp-pdf",
       "artifact_type": "source_attachment",
       "path": "raw/36C10B26R0048 08.18.2026.pdf",
-      "source": "Attachment referenced by source email",
-      "created_at": null,
-      "created_by_agent": null,
-      "version": null,
+      "source": "Downloaded Gmail attachment",
+      "created_at": "2026-08-20T18:30:00-04:00",
+      "created_by_agent": "context_curator",
+      "version": "source",
       "dependencies": [
         "src-email-project-details-2026-08-20"
       ],
-      "summary": "RFP PDF attachment. Awaiting local source file.",
-      "acceptance_status": "pending_source"
+      "summary": "153-page RFP PDF containing contract context, AI governance clauses, submission requirements, and Technical Challenge/Demonstration instructions.",
+      "acceptance_status": "accepted"
+    },
+    {
+      "artifact_id": "src-rfp-full-text",
+      "artifact_type": "source_attachment",
+      "path": "context/extracted/rfp_full_text.txt",
+      "source": "Extracted from raw/36C10B26R0048 08.18.2026.pdf",
+      "created_at": "2026-08-20T18:30:00-04:00",
+      "created_by_agent": "context_curator",
+      "version": "0.1.0",
+      "dependencies": [
+        "src-attachment-rfp-pdf"
+      ],
+      "summary": "Full extracted text from the RFP PDF for search and requirements traceability.",
+      "acceptance_status": "draft"
+    },
+    {
+      "artifact_id": "src-rfp-relevant-matches",
+      "artifact_type": "source_attachment",
+      "path": "context/extracted/rfp_relevant_matches.json",
+      "source": "Search extraction from RFP PDF",
+      "created_at": "2026-08-20T18:30:00-04:00",
+      "created_by_agent": "context_curator",
+      "version": "0.1.0",
+      "dependencies": [
+        "src-rfp-full-text"
+      ],
+      "summary": "Relevant RFP pages for Technical Challenge, AI governance, PWS 5.12, and proposal submission requirements.",
+      "acceptance_status": "draft"
     },
     {
       "artifact_id": "dataset-raw-hospital-demo",
       "artifact_type": "dataset_raw",
-      "path": "raw/hospital_dataset_placeholder.csv",
-      "source": "Expected raw hospital dataset attachment",
-      "created_at": null,
-      "created_by_agent": null,
-      "version": null,
+      "path": "raw/Hospital A - J Dirty Data Set.xlsx",
+      "source": "Downloaded Gmail attachment",
+      "created_at": "2026-08-20T18:30:00-04:00",
+      "created_by_agent": "context_curator",
+      "version": "source",
       "dependencies": [
-        "src-email-project-details-2026-08-20"
+        "src-email-project-details-2026-08-20",
+        "src-attachment-rfp-pdf"
       ],
-      "summary": "Raw 10-hospital dataset. Placeholder until the actual dataset is added.",
-      "acceptance_status": "pending_source"
+      "summary": "Original rights-managed workbook retained for provenance; replaced for workflow testing by readable raw/Excel-data.xlsx.",
+      "acceptance_status": "blocked"
     },
     {
       "artifact_id": "workflow-diagram-source",
       "artifact_type": "source_attachment",
-      "path": "raw/workflow_diagram_placeholder.md",
-      "source": "Expected EHR to EIMS to FMS workflow diagram",
-      "created_at": null,
-      "created_by_agent": null,
-      "version": null,
+      "path": "raw/Flow_Diagram_Technical_Challenge.pdf",
+      "source": "Downloaded Gmail attachment",
+      "created_at": "2026-08-20T18:30:00-04:00",
+      "created_by_agent": "context_curator",
+      "version": "source",
       "dependencies": [
-        "src-email-project-details-2026-08-20"
+        "src-email-project-details-2026-08-20",
+        "src-attachment-rfp-pdf"
       ],
-      "summary": "Business workflow diagram source. Placeholder until actual diagram is added.",
-      "acceptance_status": "pending_source"
+      "summary": "One-page image-based workflow diagram showing fictional supply process across Health Record, Inventory Management, and Financial Management swimlanes.",
+      "acceptance_status": "accepted"
+    },
+    {
+      "artifact_id": "workflow-diagram-visual-notes",
+      "artifact_type": "source_attachment",
+      "path": "context/extracted/workflow_diagram_visual_notes.md",
+      "source": "Visual inspection of raw/Flow_Diagram_Technical_Challenge.pdf",
+      "created_at": "2026-08-20T18:30:00-04:00",
+      "created_by_agent": "context_curator",
+      "version": "0.1.0",
+      "dependencies": [
+        "workflow-diagram-source"
+      ],
+      "summary": "Structured visual notes from the workflow diagram for SV-2, DIV-1, and DIV-2 planning.",
+      "acceptance_status": "draft"
+    },
+    {
+      "artifact_id": "requirements-current",
+      "artifact_type": "requirements",
+      "path": "work/requirements.json",
+      "source": "Source email plus RFP pages 143-148",
+      "created_at": "2026-08-20T18:30:00-04:00",
+      "created_by_agent": "context_curator",
+      "version": "0.1.0",
+      "dependencies": [
+        "src-email-project-details-2026-08-20",
+        "src-rfp-relevant-matches",
+        "workflow-diagram-visual-notes"
+      ],
+      "summary": "Machine-readable requirements extracted from the email and RFP technical challenge section.",
+      "acceptance_status": "draft"
+    },
+    {
+      "artifact_id": "draft-sv-2",
+      "artifact_type": "deliverable",
+      "path": "work/sv-2.md",
+      "source": "Workflow diagram plus RFP Technical Challenge section",
+      "created_at": "2026-08-20T18:35:00-04:00",
+      "created_by_agent": "diagram_architect",
+      "version": "0.1.0",
+      "dependencies": [
+        "workflow-diagram-visual-notes",
+        "requirements-current"
+      ],
+      "summary": "Draft SV-2 resource-flow interpretation across EHR, EIMS, and FMS.",
+      "acceptance_status": "draft"
+    },
+    {
+      "artifact_id": "draft-div-1",
+      "artifact_type": "deliverable",
+      "path": "work/div-1.md",
+      "source": "Workflow diagram plus RFP Technical Challenge section",
+      "created_at": "2026-08-20T18:35:00-04:00",
+      "created_by_agent": "diagram_architect",
+      "version": "0.1.0",
+      "dependencies": [
+        "workflow-diagram-visual-notes",
+        "requirements-current"
+      ],
+      "summary": "Draft conceptual data model for the hospital supply-chain workflow.",
+      "acceptance_status": "draft"
+    },
+    {
+      "artifact_id": "draft-div-2",
+      "artifact_type": "deliverable",
+      "path": "work/div-2.md",
+      "source": "RFP Technical Challenge section",
+      "created_at": "2026-08-20T18:35:00-04:00",
+      "created_by_agent": "diagram_architect",
+      "version": "0.1.0",
+      "dependencies": [
+        "requirements-current",
+        "dataset-raw-hospital-demo"
+      ],
+      "summary": "Draft logical data model with field-level cleanfile and item-master structure from the readable workbook.",
+      "acceptance_status": "draft"
+    },
+    {
+      "artifact_id": "draft-summary-outline",
+      "artifact_type": "deliverable",
+      "path": "work/summary_outline.md",
+      "source": "Email, RFP Technical Challenge section, workflow visual notes",
+      "created_at": "2026-08-20T18:35:00-04:00",
+      "created_by_agent": "summary_writer",
+      "version": "0.1.0",
+      "dependencies": [
+        "requirements-current",
+        "workflow-diagram-visual-notes"
+      ],
+      "summary": "Four-page summary outline covering methodology, rules, AI usage, governance, scaling, and diagrams.",
+      "acceptance_status": "draft"
+    },
+    {
+      "artifact_id": "draft-demo-runbook",
+      "artifact_type": "deliverable",
+      "path": "deliverables/demo_runbook.md",
+      "source": "RFP demo instructions and current factory plan",
+      "created_at": "2026-08-20T18:35:00-04:00",
+      "created_by_agent": "demo_coach",
+      "version": "0.1.0",
+      "dependencies": [
+        "requirements-current",
+        "draft-sv-2",
+        "draft-div-1",
+        "draft-div-2"
+      ],
+      "summary": "Draft 30-minute demo runbook with timed segments and dataset-dependent placeholders.",
+      "acceptance_status": "draft"
+    },
+    {
+      "artifact_id": "draft-qa-prep",
+      "artifact_type": "deliverable",
+      "path": "work/qa_prep.md",
+      "source": "RFP evaluation criteria and current factory plan",
+      "created_at": "2026-08-20T18:35:00-04:00",
+      "created_by_agent": "demo_coach",
+      "version": "0.1.0",
+      "dependencies": [
+        "requirements-current",
+        "draft-summary-outline"
+      ],
+      "summary": "Draft Q&A prep for common government evaluator themes.",
+      "acceptance_status": "draft"
+    },
+    {
+      "artifact_id": "dataset-raw-excel-data",
+      "artifact_type": "dataset_raw",
+      "path": "raw/Excel-data.xlsx",
+      "source": "Local factory workflow test from raw/Excel-data.xlsx",
+      "created_at": "2026-08-21T11:24:30",
+      "created_by_agent": "factory_orchestrator",
+      "version": "0.2.0",
+      "dependencies": [],
+      "summary": "Readable Excel workbook with 5,000 dirty hospital supply-chain records and data dictionary.",
+      "acceptance_status": "accepted"
+    },
+    {
+      "artifact_id": "dataset-profile-current",
+      "artifact_type": "dataset_profile",
+      "path": "work/data_profile.md",
+      "source": "Local factory workflow test from raw/Excel-data.xlsx",
+      "created_at": "2026-08-21T11:24:30",
+      "created_by_agent": "factory_orchestrator",
+      "version": "0.2.0",
+      "dependencies": [
+        "dataset-raw-excel-data"
+      ],
+      "summary": "Data profile generated from readable Excel workbook.",
+      "acceptance_status": "draft"
+    },
+    {
+      "artifact_id": "anomaly-inventory-current",
+      "artifact_type": "dataset_profile",
+      "path": "work/anomaly_inventory.csv",
+      "source": "Local factory workflow test from raw/Excel-data.xlsx",
+      "created_at": "2026-08-21T11:24:30",
+      "created_by_agent": "factory_orchestrator",
+      "version": "0.2.0",
+      "dependencies": [
+        "dataset-raw-excel-data"
+      ],
+      "summary": "Anomaly inventory from data profiler.",
+      "acceptance_status": "draft"
+    },
+    {
+      "artifact_id": "business-rules-current",
+      "artifact_type": "business_rules",
+      "path": "work/business_rules.md",
+      "source": "Local factory workflow test from raw/Excel-data.xlsx",
+      "created_at": "2026-08-21T11:24:30",
+      "created_by_agent": "factory_orchestrator",
+      "version": "0.2.0",
+      "dependencies": [
+        "dataset-raw-excel-data"
+      ],
+      "summary": "Business rules applied by the test workflow.",
+      "acceptance_status": "draft"
+    },
+    {
+      "artifact_id": "transformation-spec-current",
+      "artifact_type": "business_rules",
+      "path": "work/transformation_spec.json",
+      "source": "Local factory workflow test from raw/Excel-data.xlsx",
+      "created_at": "2026-08-21T11:24:30",
+      "created_by_agent": "factory_orchestrator",
+      "version": "0.2.0",
+      "dependencies": [
+        "dataset-raw-excel-data"
+      ],
+      "summary": "Machine-readable transformation spec.",
+      "acceptance_status": "draft"
+    },
+    {
+      "artifact_id": "cleanfile-current",
+      "artifact_type": "deliverable",
+      "path": "deliverables/Quoter_Tech1a_cleanfile.csv",
+      "source": "Local factory workflow test from raw/Excel-data.xlsx",
+      "created_at": "2026-08-21T11:24:30",
+      "created_by_agent": "factory_orchestrator",
+      "version": "0.2.0",
+      "dependencies": [
+        "dataset-raw-excel-data"
+      ],
+      "summary": "Cleaned and normalized hospital dataset.",
+      "acceptance_status": "ready_for_review"
+    },
+    {
+      "artifact_id": "itemmaster-current",
+      "artifact_type": "deliverable",
+      "path": "deliverables/Quoter_Tech1a_itemmaster.csv",
+      "source": "Local factory workflow test from raw/Excel-data.xlsx",
+      "created_at": "2026-08-21T11:24:30",
+      "created_by_agent": "factory_orchestrator",
+      "version": "0.2.0",
+      "dependencies": [
+        "dataset-raw-excel-data"
+      ],
+      "summary": "Consolidated national-level consumable supply item master.",
+      "acceptance_status": "ready_for_review"
+    },
+    {
+      "artifact_id": "factory-test-report-current",
+      "artifact_type": "review_report",
+      "path": "work/factory_workflow_test_report.md",
+      "source": "Local factory workflow test from raw/Excel-data.xlsx",
+      "created_at": "2026-08-21T11:24:30",
+      "created_by_agent": "factory_orchestrator",
+      "version": "0.2.0",
+      "dependencies": [
+        "dataset-raw-excel-data"
+      ],
+      "summary": "Factory workflow test report.",
+      "acceptance_status": "draft"
+    },
+    {
+      "artifact_id": "qa-review-current",
+      "artifact_type": "review_report",
+      "path": "reviews/review_report.md",
+      "source": "Local factory workflow test from raw/Excel-data.xlsx",
+      "created_at": "2026-08-21T11:24:30",
+      "created_by_agent": "factory_orchestrator",
+      "version": "0.2.0",
+      "dependencies": [
+        "dataset-raw-excel-data"
+      ],
+      "summary": "Independent QA review of the local factory workflow test.",
+      "acceptance_status": "draft"
+    },
+    {
+      "artifact_id": "acceptance-verdict-current",
+      "artifact_type": "review_report",
+      "path": "reviews/acceptance_verdict.json",
+      "source": "Local factory workflow test from raw/Excel-data.xlsx",
+      "created_at": "2026-08-21T11:24:30",
+      "created_by_agent": "factory_orchestrator",
+      "version": "0.2.0",
+      "dependencies": [
+        "dataset-raw-excel-data"
+      ],
+      "summary": "Machine-readable acceptance verdict for the local factory workflow test.",
+      "acceptance_status": "draft"
     }
   ]
 }
-

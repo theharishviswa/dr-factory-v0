@@ -1,0 +1,8 @@
+anomaly_id,category,field,record_count,factory_disposition
+ANOM-001,missing_values,Recall Status,1592,Normalize missing to None and log assumption.
+ANOM-002,missing_values,Part Name,6,Derive from Part Description prefix when available; otherwise route to SME.
+ANOM-003,uom_variants,Unit of Measure,14,"Map to standard codes BOX, EA, UNIT, BAG, PACK."
+ANOM-004,date_logic,Purchase Date,1320,Standardize date format and flag future purchase dates for SME review.
+ANOM-005,date_logic,Expiration Date,2490,Standardize date format and flag expiration-before-purchase records for SME review.
+ANOM-006,status_vocabulary,Order Status,4,"Map Ordered/Backordered to Pending, Received to Delivered, Cancelled to Canceled."
+ANOM-007,status_vocabulary,Recall Status,1899,"Flag Monitoring for governance because dictionary allows None, Active, Cleared."

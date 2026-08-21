@@ -1,0 +1,5 @@
+artifact_id,file_name,source_path,repo_path,file_type,status,notes
+src-attachment-rfp-pdf,36C10B26R0048 08.18.2026.pdf,/Users/harish.viswanathan/Downloads/36C10B26R0048 08.18.2026.pdf,raw/36C10B26R0048 08.18.2026.pdf,pdf,read,"153 pages. Relevant sections include AI clauses, PWS architecture/security context, and Technical Challenge pages 143-148."
+workflow-diagram-source,Flow_Diagram_Technical_Challenge.pdf,/Users/harish.viswanathan/Downloads/Flow_Diagram_Technical_Challenge.pdf,raw/Flow_Diagram_Technical_Challenge.pdf,pdf,read_visual,"1 page. Image-based PDF; text extraction blank. Visual notes captured in context/extracted/workflow_diagram_visual_notes.md."
+dataset-raw-hospital-demo,Hospital A - J Dirty Data Set.xlsx,/Users/harish.viswanathan/Downloads/Hospital A - J Dirty Data Set.xlsx,raw/Hospital A - J Dirty Data Set.xlsx,excel,blocked,"File is an OLE/CDF encrypted package with DRMEncryptedDataSpace and EncryptedPackage streams. Local tools cannot read sheet contents. Needs unprotected export or authorized Office session."
+

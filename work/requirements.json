@@ -1,0 +1,135 @@
+{
+  "source_artifacts": [
+    "src-email-project-details-2026-08-20",
+    "src-attachment-rfp-pdf",
+    "workflow-diagram-source",
+    "workflow-diagram-visual-notes"
+  ],
+  "requirements": [
+    {
+      "id": "R-001",
+      "category": "data_cleaning",
+      "requirement": "Clean and normalize all data fields from the 10 hospitals.",
+      "deliverables": [
+        "Quoter_Tech1a_cleanfile.csv"
+      ],
+      "status": "blocked_until_dataset_readable"
+    },
+    {
+      "id": "R-002",
+      "category": "data_cleaning",
+      "requirement": "Correct corrupted fields, standardize inconsistent values, resolve illogical dates, normalize fields including vendor names, and ensure data completeness.",
+      "deliverables": [
+        "Quoter_Tech1a_cleanfile.csv",
+        "transformation_log.csv",
+        "data_quality_report.md"
+      ],
+      "status": "blocked_until_dataset_readable"
+    },
+    {
+      "id": "R-003",
+      "category": "item_master",
+      "requirement": "Produce one consolidated national-level item master for consumable supplies used across all 10 hospitals.",
+      "deliverables": [
+        "Quoter_Tech1a_itemmaster.csv"
+      ],
+      "status": "blocked_until_cleanfile_available"
+    },
+    {
+      "id": "R-004",
+      "category": "methodology",
+      "requirement": "Summarize methodology, business rules, assumptions, decisions, transformation logic, AI prompts, AI training, and AI tools used.",
+      "deliverables": [
+        "Quoter_Tech1a_summary.pdf"
+      ],
+      "status": "draftable"
+    },
+    {
+      "id": "R-005",
+      "category": "governance",
+      "requirement": "Explain where human-in-the-loop SME input and data governance are required for areas that cannot be standardized or normalized.",
+      "deliverables": [
+        "Quoter_Tech1a_summary.pdf",
+        "human_review_queue.csv"
+      ],
+      "status": "draftable"
+    },
+    {
+      "id": "R-006",
+      "category": "scale",
+      "requirement": "Explain how the approach scales from 10 hospitals to approximately 200 hospitals for enterprise deployment.",
+      "deliverables": [
+        "Quoter_Tech1a_summary.pdf",
+        "demo_runbook.md"
+      ],
+      "status": "draftable"
+    },
+    {
+      "id": "R-007",
+      "category": "architecture",
+      "requirement": "Produce SV-2 Systems Resource Flow Description reflecting the EHR to EIMS to FMS workflow and cleaned dataset.",
+      "deliverables": [
+        "Quoter_Tech1a_diagrams.pdf"
+      ],
+      "status": "partially_draftable"
+    },
+    {
+      "id": "R-008",
+      "category": "architecture",
+      "requirement": "Produce DIV-1 Conceptual Data Model reflecting the workflow and cleaned dataset.",
+      "deliverables": [
+        "Quoter_Tech1a_diagrams.pdf"
+      ],
+      "status": "partially_draftable"
+    },
+    {
+      "id": "R-009",
+      "category": "architecture",
+      "requirement": "Produce DIV-2 Logical Data Model reflecting the workflow and cleaned dataset.",
+      "deliverables": [
+        "Quoter_Tech1a_diagrams.pdf"
+      ],
+      "status": "blocked_until_dataset_schema_readable"
+    },
+    {
+      "id": "R-010",
+      "category": "demo",
+      "requirement": "Deliver a live, non-pre-recorded virtual demonstration not exceeding 30 minutes.",
+      "deliverables": [
+        "demo_runbook.md",
+        "demo_talk_track.md"
+      ],
+      "status": "draftable"
+    },
+    {
+      "id": "R-011",
+      "category": "demo",
+      "requirement": "Prepare for a Government Q&A period limited to 15 minutes with two posed questions.",
+      "deliverables": [
+        "qa_prep.md"
+      ],
+      "status": "draftable"
+    }
+  ],
+  "constraints": {
+    "summary_max_pages": 4,
+    "summary_min_font_points": 10,
+    "demo_max_minutes": 30,
+    "qa_max_minutes": 15,
+    "dataset_expected_rows": 5000,
+    "dataset_expected_hospitals": 10,
+    "workflow_systems": [
+      "EHR",
+      "EIMS",
+      "FMS"
+    ]
+  },
+  "blockers": [
+    {
+      "id": "B-001",
+      "blocker": "Hospital dataset workbook is present but rights-managed/encrypted and cannot be read locally.",
+      "needed_resolution": "Provide unprotected xlsx/csv export or authorized Office export."
+    }
+  ]
+}
+

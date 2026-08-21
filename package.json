@@ -6,7 +6,10 @@
   "description": "Practice software factory for the hospital data-cleaning RFP demo.",
   "scripts": {
     "factory:list-artifacts": "node agent/tools/list_artifacts.mjs",
-    "factory:validate-manifest": "node agent/tools/validate_deliverable_manifest.mjs"
+    "factory:validate-manifest": "node agent/tools/validate_deliverable_manifest.mjs",
+    "factory:run-data-workflow": "python3 agent/tools/run_factory_workflow.py",
+    "factory:kickoff": "node agent/tools/kickoff_factory_run.mjs examples/kickoff_request.local.json",
+    "factory:agent:dry-run": "DR_FACTORY_MODE=dry-run node agent/tools/run_autonomous_agent.mjs summary_writer \"Review the current factory outputs and summarize what the summary writer should do next.\" work/factory_workflow_test_report.md work/business_rules.md",
+    "factory:agent:live": "DR_FACTORY_MODE=live node agent/tools/run_autonomous_agent.mjs summary_writer \"Review the current factory outputs and summarize what the summary writer should do next.\" work/factory_workflow_test_report.md work/business_rules.md"
   }
 }
-

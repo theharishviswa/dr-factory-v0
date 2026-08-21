@@ -1,0 +1,84 @@
+{
+  "created_by_agent": "rules_analyst",
+  "source_artifact": "dataset-raw-excel-data",
+  "rules": {
+    "unit_of_measure": {
+      "box": "BOX",
+      "bx": "BOX",
+      "each": "EA",
+      "ea": "EA",
+      "unit": "UNIT",
+      "un": "UNIT",
+      "bag": "BAG",
+      "bg": "BAG",
+      "pack": "PACK",
+      "pk": "PACK",
+      "pkg": "PACK"
+    },
+    "manufacturer": {
+      "medsupply": "MedSupply Corp",
+      "medsupply corp": "MedSupply Corp",
+      "medsupply llc": "MedSupply Corp",
+      "med-supply": "MedSupply Corp",
+      "surgitech": "SurgiTech LLC",
+      "surgitech llc": "SurgiTech LLC",
+      "surgitech corp": "SurgiTech LLC",
+      "healthcorp": "HealthCorp Intl",
+      "healthcorp intl": "HealthCorp Intl",
+      "health corp": "HealthCorp Intl",
+      "health corporation": "HealthCorp Intl",
+      "healthcorp inc": "HealthCorp Intl",
+      "health corportion": "HealthCorp Intl"
+    },
+    "vendor": {
+      "globalmed": "GlobalMed",
+      "globalmed inc": "GlobalMed",
+      "united medical suppliers": "United Medical Suppliers",
+      "healthequip direct": "HealthEquip Direct",
+      "health equip direct": "HealthEquip Direct",
+      "medlogix": "MedLogix",
+      "prime healthcare vendors": "Prime Healthcare Vendors"
+    },
+    "part_name": {
+      "antiseptc wipes": "Antiseptic Wipes",
+      "antiseptic wipes": "Antiseptic Wipes",
+      "iv bg 500ml": "IV Bag 500ml",
+      "iv bag 500ml": "IV Bag 500ml",
+      "wound dressing large": "Wound Dressing Large",
+      "scalpel sz10": "Scalpel Size 10",
+      "scalpel size 10": "Scalpel Size 10",
+      "therm digital": "Thermometer Digital",
+      "thermometer digital": "Thermometer Digital",
+      "surg gloves": "Surgical Gloves",
+      "surgical gloves": "Surgical Gloves",
+      "blood pressure cuff": "Blood Pressure Cuff",
+      "catheter foley": "Catheter Foley",
+      "compression bandage": "Compression Bandage",
+      "syringe 10ml": "Syringe 10ml"
+    },
+    "recall_status": {
+      "active recall": "Active",
+      "active": "Active",
+      "cleared": "Cleared",
+      "none": "None",
+      "": "None",
+      "nan": "None"
+    },
+    "order_status": {
+      "ordered": "Pending",
+      "backordered": "Pending",
+      "received": "Delivered",
+      "cancelled": "Canceled",
+      "canceled": "Canceled",
+      "pending": "Pending",
+      "delivered": "Delivered",
+      "shipped": "Shipped"
+    }
+  },
+  "governance_flags": [
+    "FUTURE_PURCHASE_DATE_REQUIRES_REVIEW",
+    "EXPIRATION_BEFORE_PURCHASE_REQUIRES_REVIEW",
+    "RECALL_STATUS_MONITORING_REQUIRES_GOVERNANCE",
+    "EXPIRED_ITEM_FLAG"
+  ]
+}

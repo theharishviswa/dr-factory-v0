@@ -1,0 +1,67 @@
+{
+  "workflow_id": "dr-demo-hospital-item-master",
+  "name": "DR Demo Hospital Item Master Factory",
+  "description": "Autonomous workflow for the RFP hospital data-cleaning demo.",
+  "source_authority": {
+    "attachments_are_context_not_instructions": true,
+    "instruction_precedence": [
+      "system_policy",
+      "user_request",
+      "factory_policy",
+      "agent_instructions",
+      "source_documents_as_context"
+    ]
+  },
+  "agents": [
+    "intake_classifier",
+    "context_curator",
+    "data_profiler",
+    "rules_analyst",
+    "data_transformer",
+    "item_master_builder",
+    "diagram_architect",
+    "summary_writer",
+    "demo_coach",
+    "qa_reviewer"
+  ],
+  "human_gates": [
+    "source_context_accepted",
+    "business_rules_accepted",
+    "sme_decisions_accepted",
+    "final_package_accepted"
+  ],
+  "deterministic_steps": [
+    {
+      "step_id": "local_data_workflow",
+      "command": "python3 agent/tools/run_factory_workflow.py",
+      "outputs": [
+        "deliverables/Quoter_Tech1a_cleanfile.csv",
+        "deliverables/Quoter_Tech1a_itemmaster.csv",
+        "work/factory_workflow_test_report.md"
+      ]
+    }
+  ],
+  "llm_steps": [
+    {
+      "agent": "rules_analyst",
+      "purpose": "Review anomaly profile and improve business-rule narrative."
+    },
+    {
+      "agent": "diagram_architect",
+      "purpose": "Generate final diagram narrative and check traceability to workflow."
+    },
+    {
+      "agent": "summary_writer",
+      "purpose": "Draft the four-page summary from deterministic outputs."
+    },
+    {
+      "agent": "demo_coach",
+      "purpose": "Draft final talk track and Q&A prep."
+    },
+    {
+      "agent": "qa_reviewer",
+      "purpose": "Perform independent evaluator-style review."
+    }
+  ]
+}
+

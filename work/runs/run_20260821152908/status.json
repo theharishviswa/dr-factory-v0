@@ -1,0 +1,8 @@
+{
+  "factory_run_id": "run_20260821152908",
+  "status": "accepted",
+  "created_at": "2026-08-21T15:29:08.915Z",
+  "trigger_source": "cli",
+  "requested_by": "harish",
+  "next_step": "Run deterministic workflow or autonomous subagent calls."
+}

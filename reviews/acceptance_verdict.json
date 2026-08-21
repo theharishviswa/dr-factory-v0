@@ -1,0 +1,19 @@
+{
+  "created_by_agent": "qa_reviewer",
+  "date": "2026-08-21",
+  "verdict": "partial_pass_for_workflow_test",
+  "ready_for_final_submission": false,
+  "checks": {
+    "source_workbook_readable": true,
+    "cleanfile_created": true,
+    "item_master_created": true,
+    "row_count_preserved": true,
+    "transformation_log_created": true,
+    "human_review_queue_created": true,
+    "summary_finalized": false,
+    "diagrams_finalized": false
+  },
+  "blockers": [
+    "Final summary and final diagrams have not yet been generated from the completed data outputs."
+  ]
+}

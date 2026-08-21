@@ -1,0 +1,17 @@
+{
+  "request_id": "local-dr-demo-001",
+  "trigger_source": "cli",
+  "requested_by": "harish",
+  "project_name": "dr-factory-demo",
+  "user_request": "Run the hospital item-master workflow and prepare demo artifacts.",
+  "source_artifacts": [
+    "raw/Excel-data.xlsx",
+    "raw/36C10B26R0048 08.18.2026.pdf",
+    "raw/Flow_Diagram_Technical_Challenge.pdf"
+  ],
+  "response_channel": {
+    "type": "cli",
+    "target": "stdout"
+  },
+  "mode": "dry-run"
+}

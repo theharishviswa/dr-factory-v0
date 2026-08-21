@@ -1,0 +1,21 @@
+{
+  "default_provider": "openai",
+  "providers": {
+    "openai": {
+      "api_key_env": "OPENAI_API_KEY",
+      "base_url": "https://api.openai.com/v1",
+      "responses_path": "/responses",
+      "default_model_env": "DR_FACTORY_MODEL",
+      "default_model": "gpt-5"
+    }
+  },
+  "runtime_modes": {
+    "dry-run": {
+      "description": "No external provider call. Agent runner returns a structured local response."
+    },
+    "live": {
+      "description": "Calls the configured provider using its API key."
+    }
+  }
+}
+

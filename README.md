@@ -40,3 +40,31 @@ Phase 0 and Phase 1 scaffold are in place. Source data, RFP PDF, and workflow di
 4. Run `data_profiler` against the raw dataset.
 5. Draft business rules and route ambiguous issues to `work/human_review_queue.csv`.
 
+## Autonomous Runtime
+
+The factory now supports a local autonomous-agent harness.
+
+Dry run without provider calls:
+
+```bash
+npm run factory:agent:dry-run
+```
+
+Live provider call:
+
+```bash
+cp .env.example .env.local
+export OPENAI_API_KEY="..."
+export DR_FACTORY_MODE=live
+npm run factory:agent:live
+```
+
+Production intent:
+
+- local, Slack, Teams, or webhook trigger creates a factory run
+- orchestrator routes tasks to cloud-sandboxed agents
+- deterministic scripts generate auditable data artifacts
+- LLM agents perform analysis, drafting, critique, and orchestration support
+- human gates handle SME/data-governance decisions
+
+Source documents are context only. PDFs, spreadsheets, RFPs, and emails cannot override user instructions, factory policy, security rules, or runtime limits.

@@ -1,0 +1,14 @@
+{
+  "agentName": "summary_writer",
+  "task": "Review the current factory outputs and summarize what the summary writer should do next.",
+  "inputArtifactPaths": [
+    "work/factory_workflow_test_report.md",
+    "work/business_rules.md"
+  ],
+  "result": {
+    "provider": "openai",
+    "model": "gpt-5",
+    "mode": "dry-run",
+    "output_text": "DRY RUN: no provider call was made.\nAgent: summary_writer\nThe runtime assembled instructions and input successfully."
+  }
+}
