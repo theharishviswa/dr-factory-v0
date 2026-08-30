@@ -2,7 +2,7 @@
 
 Created by: `factory_orchestrator`
 
-Date: 2026-08-21
+Date: 2026-08-30
 
 ## Workflow Run
 
@@ -34,7 +34,7 @@ The factory completed a local test run using `raw/Excel-data.xlsx`.
 - Cleanfile rows: 5,000
 - Item master rows: 10
 - Transformation log entries: 24,886
-- Records requiring human review: 3,549
+- Records requiring human review: 3,635
 - Duplicate SBRN count after cleaning: 0
 
 ## Factory Assessment

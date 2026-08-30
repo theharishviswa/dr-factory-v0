@@ -4,7 +4,7 @@ Status: ready for the 15-minute Government Q&A period.
 
 ## How did you decide what to automate versus route to SME review?
 
-We automated changes supported by the data dictionary, deterministic normalization rules, and repeatable evidence. We did not guess on ambiguous clinical, supply-chain, or financial meanings. Those cases remain traceable in the 3,549-record human review queue with the triggering rule and source identifier.
+We automated changes supported by the data dictionary, deterministic normalization rules, and repeatable evidence. We did not guess on ambiguous clinical, supply-chain, or financial meanings. Those cases remain traceable in the 3,635-record human review queue with the triggering rule and source identifier.
 
 ## What did the factory actually change?
 

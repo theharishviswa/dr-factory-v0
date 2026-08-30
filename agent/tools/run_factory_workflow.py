@@ -1,5 +1,6 @@
 import csv
 import json
+import os
 import re
 from collections import defaultdict
 from datetime import datetime
@@ -10,7 +11,9 @@ import pandas as pd
 
 ROOT = Path(__file__).resolve().parents[2]
 SOURCE = ROOT / "raw" / "Excel-data.xlsx"
-TODAY = pd.Timestamp("2026-08-21")
+# Pin the evaluation date for reproducible runs; override deliberately when a
+# new source snapshot is evaluated (e.g., FACTORY_AS_OF_DATE=2026-08-30).
+TODAY = pd.Timestamp(os.getenv("FACTORY_AS_OF_DATE", "2026-08-30"))
 
 
 UOM_MAP = {
@@ -125,6 +128,14 @@ def normalize_part_name(part_name, part_description):
     return PART_NAME_MAP.get(cleaned.lower(), cleaned)
 
 
+def parse_mixed_dates(series):
+    """Parse Excel dates plus mixed ISO/US text dates without dropping valid values."""
+    try:
+        return pd.to_datetime(series, format="mixed", errors="coerce")
+    except TypeError:
+        return series.map(lambda value: pd.to_datetime(value, errors="coerce"))
+
+
 def item_id(name):
     slug = re.sub(r"[^A-Z0-9]+", "-", name.upper()).strip("-")
     return f"NIM-{slug}"
@@ -167,8 +178,8 @@ def profile_source(df, dictionary):
             f"| `{column}` | {df[column].notna().sum():,} | {nulls[column]:,} | {'; '.join(examples)} |"
         )
 
-    purchase = pd.to_datetime(df["Purchase Date"], errors="coerce")
-    expiration = pd.to_datetime(df["Expiration Date"], errors="coerce")
+    purchase = parse_mixed_dates(df["Purchase Date"])
+    expiration = parse_mixed_dates(df["Expiration Date"])
     profile_lines.extend(
         [
             "",
@@ -177,9 +188,10 @@ def profile_source(df, dictionary):
             f"- Unique SBRN values: {df['SBRN'].nunique():,}; duplicate SBRN count: {df['SBRN'].duplicated().sum():,}.",
             f"- `Recall Status` is missing in {nulls['Recall Status']:,} rows.",
             f"- `Part Name` is missing in {nulls['Part Name']:,} rows.",
-            f"- `Purchase Date` has {(purchase > TODAY).sum():,} future dates relative to 2026-08-21.",
+            f"- `Purchase Date` has {(purchase > TODAY).sum():,} future dates relative to {TODAY.strftime('%Y-%m-%d')}.",
             f"- `Expiration Date` is before `Purchase Date` in {(expiration < purchase).sum():,} rows.",
             f"- `Expiration Date` is already past in {(expiration < TODAY).sum():,} rows.",
+            f"- `Purchase Date` could not be parsed in {purchase.isna().sum():,} rows; `Expiration Date` could not be parsed in {expiration.isna().sum():,} rows.",
             "- Unit of measure has variants such as `Box`/`BX`, `Each`/`EA`, `BAG`/`BG`/`bag`, and `PK`/`Pack`/`PKG`.",
             "- Manufacturer names include aliases and typos across MedSupply, SurgiTech, and HealthCorp families.",
             "- Vendor names include small alias/formatting variants for GlobalMed and HealthEquip Direct.",
@@ -271,8 +283,8 @@ def clean_dataset(df):
     clean["Recall Status"] = clean["Recall Status"].map(lambda value: normalize_with_map(value, RECALL_MAP))
     clean["Order Status"] = clean["Order Status"].map(lambda value: normalize_with_map(value, ORDER_STATUS_MAP))
 
-    purchase = pd.to_datetime(clean["Purchase Date"], errors="coerce")
-    expiration = pd.to_datetime(clean["Expiration Date"], errors="coerce")
+    purchase = parse_mixed_dates(clean["Purchase Date"])
+    expiration = parse_mixed_dates(clean["Expiration Date"])
     clean["Purchase Date"] = purchase.dt.strftime("%Y-%m-%d")
     clean["Expiration Date"] = expiration.dt.strftime("%Y-%m-%d")
     clean["Price"] = pd.to_numeric(clean["Price"], errors="coerce").round(2)
@@ -290,6 +302,10 @@ def clean_dataset(df):
             flags_by_sbrn[sbrn].append("MISSING_RECALL_STATUS_NORMALIZED_TO_NONE")
         if clean.at[idx, "Recall Status"] == "Monitoring":
             flags_by_sbrn[sbrn].append("RECALL_STATUS_MONITORING_REQUIRES_GOVERNANCE")
+        if pd.isna(purchase.at[idx]):
+            flags_by_sbrn[sbrn].append("INVALID_PURCHASE_DATE_REQUIRES_REVIEW")
+        if pd.isna(expiration.at[idx]):
+            flags_by_sbrn[sbrn].append("INVALID_EXPIRATION_DATE_REQUIRES_REVIEW")
         if purchase.at[idx] > TODAY:
             flags_by_sbrn[sbrn].append("FUTURE_PURCHASE_DATE_REQUIRES_REVIEW")
         if expiration.at[idx] < purchase.at[idx]:
@@ -298,6 +314,10 @@ def clean_dataset(df):
             flags_by_sbrn[sbrn].append("EXPIRED_ITEM_FLAG")
         if pd.isna(original.at[idx, "Part Name"]):
             flags_by_sbrn[sbrn].append("PART_NAME_DERIVED_FROM_DESCRIPTION")
+        if clean.at[idx, "Unit of Measure"] not in {"BOX", "EA", "UNIT", "BAG", "PACK"}:
+            flags_by_sbrn[sbrn].append("MISSING_OR_INVALID_UOM_REQUIRES_REVIEW")
+        if not clean_text(clean.at[idx, "Catalog Number"]):
+            flags_by_sbrn[sbrn].append("MISSING_CATALOG_NUMBER_REQUIRES_REVIEW")
 
     watched_columns = [
         "Part Name",
@@ -420,6 +440,8 @@ Created by: `rules_analyst`
 - Normalize order statuses to data-dictionary vocabulary: `Pending`, `Delivered`, `Shipped`, `Canceled`.
 - Normalize missing recall status to `None`; normalize `Active Recall` to `Active`.
 - Convert purchase and expiration dates to ISO `YYYY-MM-DD`.
+- Parse mixed Excel/ISO/US date representations without dropping valid values; flag unparseable dates for review.
+- Flag missing or invalid unit-of-measure values and missing catalog numbers for source-owner correction.
 - Add `NationalItemMasterId` for item-master traceability.
 - Add `DataQualityFlags` and `HumanReviewRequired` rather than hiding unresolved issues.
 
@@ -457,7 +479,7 @@ Created by: `rules_analyst`
 
 Created by: `factory_orchestrator`
 
-Date: 2026-08-21
+Date: {TODAY.strftime('%Y-%m-%d')}
 
 ## Workflow Run
 
@@ -502,7 +524,7 @@ The workflow is viable as a local, no-provider-key factory test. Codex can serve
 
 Created by: `qa_reviewer`
 
-Date: 2026-08-21
+Date: {TODAY.strftime('%Y-%m-%d')}
 
 ## Verdict
 
@@ -537,7 +559,7 @@ Partial pass for a local software-factory workflow test.
 
     verdict = {
         "created_by_agent": "qa_reviewer",
-        "date": "2026-08-21",
+        "date": TODAY.strftime("%Y-%m-%d"),
         "verdict": "partial_pass_for_workflow_test",
         "ready_for_final_submission": False,
         "checks": {

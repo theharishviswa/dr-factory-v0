@@ -46,9 +46,10 @@ Data dictionary fields: 23
 - Unique SBRN values: 5,000; duplicate SBRN count: 0.
 - `Recall Status` is missing in 1,592 rows.
 - `Part Name` is missing in 6 rows.
-- `Purchase Date` has 1,320 future dates relative to 2026-08-21.
+- `Purchase Date` has 1,310 future dates relative to 2026-08-30.
 - `Expiration Date` is before `Purchase Date` in 2,490 rows.
-- `Expiration Date` is already past in 3,616 rows.
+- `Expiration Date` is already past in 3,625 rows.
+- `Purchase Date` could not be parsed in 0 rows; `Expiration Date` could not be parsed in 0 rows.
 - Unit of measure has variants such as `Box`/`BX`, `Each`/`EA`, `BAG`/`BG`/`bag`, and `PK`/`Pack`/`PKG`.
 - Manufacturer names include aliases and typos across MedSupply, SurgiTech, and HealthCorp families.
 - Vendor names include small alias/formatting variants for GlobalMed and HealthEquip Direct.

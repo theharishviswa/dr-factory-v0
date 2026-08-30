@@ -1,5 +1,7 @@
 from pathlib import Path
 
+import pandas as pd
+
 from docx import Document
 from docx.enum.section import WD_SECTION
 from docx.enum.table import WD_CELL_VERTICAL_ALIGNMENT, WD_TABLE_ALIGNMENT
@@ -11,6 +13,7 @@ from docx.shared import Inches, Pt, RGBColor
 
 ROOT = Path(__file__).resolve().parents[2]
 OUTPUT = ROOT / "deliverables" / "Quoter_Tech1a_summary.docx"
+AS_OF_DATE = pd.Timestamp("2026-08-30")
 
 INK = RGBColor(11, 37, 69)
 BLUE = RGBColor(46, 116, 181)
@@ -189,6 +192,20 @@ def add_page_title(doc, page_label, title, subtitle=None):
 
 
 def build():
+    clean = pd.read_csv(ROOT / "deliverables" / "Quoter_Tech1a_cleanfile.csv", dtype=str, keep_default_na=False)
+    purchase = pd.to_datetime(clean["Purchase Date"], format="mixed", errors="coerce")
+    expiration = pd.to_datetime(clean["Expiration Date"], format="mixed", errors="coerce")
+    stats = {
+        "rows": len(clean),
+        "hospitals": clean["Hospital"].nunique(),
+        "items": clean["NationalItemMasterId"].nunique(),
+        "transformations": len(pd.read_csv(ROOT / "work" / "transformation_log.csv")),
+        "review": int(clean["HumanReviewRequired"].str.lower().eq("true").sum()),
+        "future_purchase": int((purchase > AS_OF_DATE).sum()),
+        "expiration_before_purchase": int((expiration < purchase).sum()),
+        "expired": int((expiration < AS_OF_DATE).sum()),
+        "monitoring": int(clean["Recall Status"].eq("Monitoring").sum()),
+    }
     doc = Document()
     configure_document(doc)
 
@@ -196,13 +213,13 @@ def build():
         doc,
         "Page 1 | Methodology",
         "Hospital Supply Data Cleaning and National Item Master",
-        "Technical Challenge Summary | 5,000 fictional records across Hospitals A-J | 21 August 2026",
+        f"Technical Challenge Summary | {stats['rows']:,} fictional records across Hospitals A-J | {AS_OF_DATE.strftime('%d %B %Y')}",
     )
-    add_metric_strip(doc, [("5,000", "source and clean rows"), ("10", "hospitals"), ("10", "national items"), ("0", "duplicate SBRNs")])
+    add_metric_strip(doc, [(f"{stats['rows']:,}", "source and clean rows"), (str(stats["hospitals"]), "hospitals"), (str(stats["items"]), "national items"), ("0", "duplicate SBRNs")])
     add_heading(doc, "Executive result")
     add_paragraph(
         doc,
-        "The software factory ingested the readable hospital workbook and data dictionary, profiled all 23 source fields, applied governed deterministic rules, preserved row-level traceability, generated a 26-field cleanfile, and consolidated the records into a 15-field national consumable item master. The process produced 24,886 field-level change records and retained 3,549 records in a human-review queue rather than silently resolving ambiguous conditions.",
+        f"The software factory ingested the readable hospital workbook and data dictionary, profiled all 23 source fields, applied governed deterministic rules, preserved row-level traceability, generated a 26-field cleanfile, and consolidated the records into a 15-field national consumable item master. The process produced {stats['transformations']:,} field-level change records and retained {stats['review']:,} records in a human-review queue rather than silently resolving ambiguous conditions.",
     )
     add_heading(doc, "Methodology and workflow interpretation")
     add_table(
@@ -237,7 +254,7 @@ def build():
             ("Manufacturer", "Map known aliases into MedSupply, SurgiTech, and HealthCorp canonical families.", "Health Corportion -> HealthCorp Intl."),
             ("Vendor", "Normalize known formatting aliases.", "GlobalMed Inc -> GlobalMed."),
             ("Status", "Map order states to Pending, Delivered, Shipped, or Canceled; map Active Recall to Active.", "Received -> Delivered."),
-            ("Dates/numbers", "Format dates as YYYY-MM-DD; coerce price and quantities to numeric values.", "Comparable values across hospitals."),
+            ("Dates/numbers", "Parse mixed Excel/ISO/US dates to YYYY-MM-DD; coerce price and quantities to numeric values.", "Valid source dates are retained; unparseable values are flagged."),
             ("Traceability", "Add NationalItemMasterId, DataQualityFlags, and HumanReviewRequired.", "Every row exposes its disposition."),
         ],
         widths=[1.05, 4.05, 1.75],
@@ -247,10 +264,10 @@ def build():
         doc,
         ["Condition", "Observed", "Disposition"],
         [
-            ("Future purchase date", "1,320 records", "Flag for source-owner validation; do not invent a replacement date."),
-            ("Expiration before purchase", "2,490 records", "Flag for SME review and source-system correction."),
-            ("Recall status = Monitoring", "Governance exception", "Retain source value and require an approved vocabulary decision."),
-            ("Expired item", "3,616 records", "Flag for operational disposition; retain for traceability and analysis."),
+            ("Future purchase date", f"{stats['future_purchase']:,} records", "Flag for source-owner validation; do not invent a replacement date."),
+            ("Expiration before purchase", f"{stats['expiration_before_purchase']:,} records", "Flag for SME review and source-system correction."),
+            ("Recall status = Monitoring", f"{stats['monitoring']:,} records", "Retain source value and require an approved vocabulary decision."),
+            ("Expired item", f"{stats['expired']:,} records", "Flag for operational disposition; retain for traceability and analysis."),
             ("Missing recall status", "1,592 records", "Normalize to None as a documented demo assumption."),
         ],
         widths=[1.65, 1.35, 3.85],
@@ -290,7 +307,7 @@ def build():
     add_heading(doc, "Human-in-the-loop and data governance")
     add_paragraph(
         doc,
-        "Named gates accept source context, business rules, SME decisions, and the final package. The 3,549-record review queue exposes affected SBRNs, issue flags, decision owner, and status. A production owner must resolve recall vocabulary, date anomalies, unit conversions with business meaning, uncertain item matches, and source-system corrections. Approval records must capture actor, decision, reason, timestamp, and the exact artifact version reviewed.",
+        f"Named gates accept source context, business rules, SME decisions, and the final package. The {stats['review']:,}-record review queue exposes affected SBRNs, issue flags, decision owner, and status. A production owner must resolve recall vocabulary, date anomalies, unit conversions with business meaning, uncertain item matches, and source-system corrections. Approval records must capture actor, decision, reason, timestamp, and the exact artifact version reviewed.",
     )
     add_heading(doc, "Security and responsible operation")
     add_paragraph(
@@ -326,7 +343,7 @@ def build():
         doc,
         "The SV-2 describes information and resource exchange among EHR, EIMS, FMS, external supplier/insurer actors, and the governed item-master factory. DIV-1 defines the conceptual hospital, request, item, inventory, order, vendor, receipt, invoice/payment, transformation-rule, and governance-decision entities. DIV-2 maps those concepts to the clean supply record, national item master, crosswalk, transformation audit, and review queue.",
     )
-    add_metric_strip(doc, [("5,000", "rows preserved"), ("24,886", "field changes logged"), ("3,549", "records queued"), ("4/4", "repeatability hashes matched")])
+    add_metric_strip(doc, [(f"{stats['rows']:,}", "rows preserved"), (f"{stats['transformations']:,}", "field changes logged"), (f"{stats['review']:,}", "records queued"), ("4/4", "repeatability hashes matched")])
     add_heading(doc, "Assumptions and conclusion")
     add_paragraph(
         doc,
