@@ -14,6 +14,8 @@ Created by: `rules_analyst`
 - Normalize order statuses to data-dictionary vocabulary: `Pending`, `Delivered`, `Shipped`, `Canceled`.
 - Normalize missing recall status to `None`; normalize `Active Recall` to `Active`.
 - Convert purchase and expiration dates to ISO `YYYY-MM-DD`.
+- Parse mixed Excel/ISO/US date representations without dropping valid values; flag unparseable dates for review.
+- Flag missing or invalid unit-of-measure values and missing catalog numbers for source-owner correction.
 - Add `NationalItemMasterId` for item-master traceability.
 - Add `DataQualityFlags` and `HumanReviewRequired` rather than hiding unresolved issues.
 

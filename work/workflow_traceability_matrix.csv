@@ -3,7 +3,7 @@ R-001,raw/Excel-data.xlsx,deliverables/Quoter_Tech1a_cleanfile.csv,data_transfor
 R-002,raw/Excel-data.xlsx,work/transformation_log.csv,data_transformer,complete,"24,886 field transformations logged; unresolved semantics routed to review."
 R-003,raw/Excel-data.xlsx,deliverables/Quoter_Tech1a_itemmaster.csv,item_master_builder,complete,"10 consolidated national item-master records."
 R-004,src-email-project-details-2026-08-20,deliverables/Quoter_Tech1a_summary.pdf,summary_writer,complete,"Four pages; methodology, rules, decisions, AI use, and governance included."
-R-005,raw/Excel-data.xlsx,work/human_review_queue.csv,rules_analyst,complete,"3,549 records preserved for governed SME decisions."
+R-005,raw/Excel-data.xlsx,work/human_review_queue.csv,rules_analyst,complete,"3,635 records preserved for governed SME decisions."
 R-006,src-attachment-rfp-pdf,deliverables/Quoter_Tech1a_summary.pdf,summary_writer,complete,"200-hospital scaling approach included."
 R-007,workflow-diagram-source,deliverables/Quoter_Tech1a_diagrams.pdf,diagram_architect,complete,"SV-2 resource flow included."
 R-008,workflow-diagram-source,deliverables/Quoter_Tech1a_diagrams.pdf,diagram_architect,complete,"DIV-1 conceptual model included."

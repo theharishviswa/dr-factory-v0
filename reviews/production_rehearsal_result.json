@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "rehearsal_date": "2026-08-21",
+  "rehearsal_date": "2026-08-30",
   "mode": "dry-run",
   "proof_level": "control_plane_rehearsal",
   "runs_completed": 2,
@@ -13,13 +13,13 @@
     "cleanfile_rows": 5000,
     "cleanfile_columns": 26,
     "item_master_rows": 10,
-    "human_review_records": 3549
+    "human_review_records": 3635
   },
   "deterministic_artifact_hashes": {
-    "deliverables/Quoter_Tech1a_cleanfile.csv": "14ecf66a93508727e41777dcdf31441d28a4e53bfa3b858b61b36d38c2870c98",
-    "deliverables/Quoter_Tech1a_itemmaster.csv": "f0b17345d4d86618eb2c980b1d610438d18621fcc8ba8d195dadadf546d2cd66",
-    "work/transformation_log.csv": "5699734cf9f8b43f65371bfa2d44ad30d80c80a89611ba86587fee23c4690686",
-    "work/human_review_queue.csv": "4793ff673a46d9f80ff6d3bd28d1a6eb841ca0a64306fdb57f76f99a3bb177a4"
+    "deliverables/Quoter_Tech1a_cleanfile.csv": "55f2c05778e6b982da00440b38f3c6ebd58b84d1a84b9f20f69369a4a90970f4",
+    "deliverables/Quoter_Tech1a_itemmaster.csv": "646e78ee62a749d514792c637e53436150df79f3dccb0aaebe6163864ff0b8c8",
+    "work/transformation_log.csv": "96fb1c4900393a36e18df12f11759280b56e6aa42c548497cc2afaaa3dc93036",
+    "work/human_review_queue.csv": "8fa77ee96fa2b2e028ec4e4b25dc5a2f77e51939d431fc32f6efd706e3c9c22a"
   },
   "submission_ready": false,
   "remaining_proof": [

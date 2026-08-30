@@ -91,6 +91,5 @@ erDiagram
 - `clean_supply_record`: 5,000 rows.
 - `national_item_master`: 10 rows.
 - `transformation_log`: 24,886 field-level entries.
-- `human_review_queue`: 3,549 records.
+- `human_review_queue`: 3,635 records.
 - Duplicate `SBRN` count after cleaning: 0.
-

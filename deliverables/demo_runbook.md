@@ -26,7 +26,7 @@ Show a repeatable, governed software-factory workflow that converts the supplied
 - 5,000 source rows preserved in the cleanfile with 26 columns.
 - 10 consolidated national item-master records.
 - 24,886 field-level transformations recorded.
-- 3,549 records retained in the human review queue rather than guessed.
+- 3,635 records retained in the human review queue rather than guessed.
 - 0 duplicate SBRNs after cleaning.
 - Four deterministic outputs matched byte-for-byte across two dry-run rehearsals.
 - Four-page summary at the required minimum 10-point font, plus editable and PDF architecture diagrams.

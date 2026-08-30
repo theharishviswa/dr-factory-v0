@@ -100,7 +100,7 @@ function buildCover(presentation) {
     ["5,000", "clean records"],
     ["26", "cleanfile fields"],
     ["15", "master fields"],
-    ["3,549", "review records"]
+    ["3,635", "review records"]
   ];
   metrics.forEach(([value, label], i) => {
     const x = 48 + i * 296;

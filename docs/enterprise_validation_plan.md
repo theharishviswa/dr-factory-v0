@@ -30,7 +30,7 @@ Freeze the following as the first regression fixture:
 - Expected cleanfile rows: 5,000.
 - Expected cleanfile columns: 26.
 - Expected item-master rows: 10.
-- Expected human-review records: 3,549.
+- Expected human-review records: 3,635.
 - Expected deterministic hashes from `reviews/production_rehearsal_result.json`.
 
 Any intentional rule change must update the fixture through a reviewed change record that explains why the expected output changed.
